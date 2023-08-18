@@ -1,21 +1,20 @@
+
 import React, { useState } from "react";
 import './../styles/App.css';
 
-let arr = [
-  { id: 1, text: "Learn React", completed: false },
-  { id: 2, text: "Build a React app", completed: false },
-  { id: 3, text: "Deploy the React app", completed: false }
-];
+let arr = ["Learn React", "Build a React app", "Deploy the React app"];
 
 const App = () => {
-  const [todos, setTodos] = useState(arr);
+  const [array, setArray] = useState(arr)
 
-  const handleComplete = (id) => {
-    setTodos(todos.map(todo => 
-      todo.id === id ? { ...todo, completed: true } : todo
-    ));
-  };
-
+  // const handle = (e) =>{
+  //   let demo = document.getElementsByClassName(e.target.className)[0].style.display = "none";
+  //   console.log(demo[0])
+  //   // demo[0].style.display = "none";
+  // }
+  function handleBtn(index){
+    document.getElementById(index).style.display = "none";
+  }
   return (
     <div>
         {/* Do not remove the main div */}
@@ -23,22 +22,21 @@ const App = () => {
         <div >
           <h2 style={{padding:"0 30px"}}>Child Component</h2>
             <ul>
-                { todos.map((todo) => {
-                  return(
-                    <div style={{display:"flex"}}>
-                      <li style={{ textDecoration: todo.completed ? "line-through" : "none" }}>
-                        {todo.text}
-                      </li>
-                      <button onClick={() => handleComplete(todo.id)}>
-                        Complete
-                      </button>                  
-                    </div>
-                  )
-                })}
+                { array.map((data,index) =>{
+                return(
+                  <div style={{display:"flex"}} key={index}>
+                    <li>{data}</li>
+                    {/* <button onClick={handle} className={`element${index}`}>Complete</button>                   */}
+                    <button onClick={()=>handleBtn(index)} id={`${index}`}>Complete</button>                  
+                  </div>
+                )
+               }
+                  
+              )}
             </ul>
         </div>
     </div>
   )
 }
 
-export default App;
+export default App
